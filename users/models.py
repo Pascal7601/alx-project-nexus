@@ -51,3 +51,37 @@ class User(AbstractUser):
 
     class Meta:
         ordering = ["created_at"]
+
+class CandidateProfile(models.Model):
+    """
+    candidate profile model that will be generated automatically when
+    the user is a candidate
+    """
+    user = models.OneToOneField(
+        User, primary_key=True, on_delete=models.CASCADE
+        )
+    headline = models.CharField(max_length=254, null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
+    location = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.user.email}"
+    
+    #relationships
+    skills = models.ManyToManyField("skills.Skill", blank=True)
+    
+
+class Company(models.Model):
+    id = models.UUIDField(primary_key=True, null=False, blank=False, default=uuid4)
+    name = models.CharField(max_length=254, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    website = models.URLField(max_length=254, null=True, blank=True)
+    logo = models.ImageField(null=True, blank=True)
+
+    #relationships
+    owner = models.OneToOneField(
+        User, null=True, on_delete=models.SET_NULL, related_name="companies"
+        )
+
+    def __str__(self):
+        return f"{self.name}"
