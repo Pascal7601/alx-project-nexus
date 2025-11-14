@@ -29,7 +29,7 @@ class User(AbstractUser):
     """
     class Roles(models.TextChoices):
         CANDIDATE = "candidate"
-        COMPANY = "company"
+        RECRUITER = "recruiter"
 
     id = models.UUIDField(primary_key=True, null=False, blank=False, default=uuid4)
     email = models.EmailField(max_length=254, null=False, unique=True)
