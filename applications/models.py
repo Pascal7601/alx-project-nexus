@@ -5,6 +5,9 @@ from users.models import CandidateProfile
 
 
 class Application(models.Model):
+    """Application table to store details of candidates 
+        who've applied for jobs and jobs that thyve applied
+    """
     class Status(models.TextChoices):
         APPLIED = "Applied"
         UNDER_REVIEW = "Under Review"
