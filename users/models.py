@@ -58,7 +58,7 @@ class CandidateProfile(models.Model):
     the user is a candidate
     """
     user = models.OneToOneField(
-        User, primary_key=True, on_delete=models.CASCADE
+        User, primary_key=True, on_delete=models.CASCADE, related_name="profile"
         )
     headline = models.CharField(max_length=254, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
