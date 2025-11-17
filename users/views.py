@@ -10,7 +10,7 @@ class UserCreateView(generics.CreateAPIView):
     permission_classes = [AllowAny] #Allow anyone to register
 
     def create(self, request, *args, **kwargs):
-        """serialize the data and manually return a custom response"""
+        """serialize the data, save the user  and manually return a custom response"""
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
@@ -25,9 +25,11 @@ class UserCreateView(generics.CreateAPIView):
         return Response(response, status=status.HTTP_201_CREATED)
 
 class UserDetailView(generics.RetrieveAPIView):
+    """Enables the logged in user to get their profile details"""
     serializer_class = serializers.UserDetailSerializer
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] #allow only authenticated users to view their profile
 
     def get_object(self):
+        """return the user that authenticated using the acces token"""
         return self.request.user
