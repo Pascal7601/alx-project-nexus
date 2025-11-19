@@ -21,7 +21,7 @@ class JobPosting(models.Model):
         related_name="jobs"
     )
     required_skills = models.ManyToManyField(
-        "skills.Skill", blank=True, related_name="jobs_requiring", null=True
+        "skills.Skill", blank=True, related_name="jobs_requiring"
         )
 
     def __str__(self):
