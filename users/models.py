@@ -58,7 +58,7 @@ class CandidateProfile(models.Model):
     the user is a candidate
     """
     user = models.OneToOneField(
-        User, primary_key=True, on_delete=models.CASCADE, related_name="profile"
+        User, primary_key=True, on_delete=models.CASCADE, related_name="candidate_profile"
         )
     headline = models.CharField(max_length=254, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
@@ -79,8 +79,8 @@ class Company(models.Model):
     logo = models.ImageField(null=True, blank=True)
 
     #relationships
-    owner = models.OneToOneField(
-        User, null=True, on_delete=models.SET_NULL, related_name="companies"
+    owner = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.SET_NULL, related_name="companies"
         )
 
     def __str__(self):

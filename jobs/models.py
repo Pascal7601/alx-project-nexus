@@ -9,10 +9,10 @@ class JobPosting(models.Model):
     title = models.CharField(max_length=254)
     description = models.TextField()
     location = models.CharField(max_length=254, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    posted_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_external = models.BooleanField(default=False)
-    external_url = models.URLField(max_length=254)
+    external_url = models.URLField(max_length=254, null=True, blank=True)
 
     #relationships
     company = models.ForeignKey(
