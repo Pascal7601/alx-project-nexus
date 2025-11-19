@@ -1,13 +1,14 @@
 # base URL
 @baseUrl = http://127.0.0.1:8000/api
+@authToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwODQ4LCJpYXQiOjE3NjM1NDA1NDgsImp0aSI6ImVlMGY2NDczMDI2NTQ3YTRhZjI0NzU0MWMzNjJiOGQwIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.zRvS0QHC2OevF5Y4QMo4b8lgSkF8wH2nZ_7CKJYGQkA
 
 ###
-POST {{baseUrl}}/auth/register/
+POST {{baseUrl}}/users/register/
 Content-Type: application/json
 
 {
-    "email": "test01@gmail.com",
-    "password": "test01"
+    "email": "test04@gmail.com",
+    "password": "test04"
 }
 
 ###
@@ -15,10 +16,117 @@ POST {{baseUrl}}/auth/token/
 Content-Type: application/json
 
 {
-    "email": "test01@gmail.com",
-    "password": "test01"
+    "email": "test02@gmail.com",
+    "password": "test02"
+}
+
+###
+POST {{baseUrl}}/auth/token/
+Content-Type: application/json
+
+{
+    "email": "test02@gmail.com",
+    "password": "test02"
 }
 
 ###
 GET {{baseUrl}}/users/me/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzMjIxMjY4LCJpYXQiOjE3NjMyMjA5NjksImp0aSI6IjVjNjM0ZDhlZTg3MjQ0ZTQ4ZWRmMTFkYmNmNWQ4MmQyIiwidXNlcl9pZCI6ImExOWJmYWY1LTJkNzMtNDc2Ny05NjczLTc1YjdkNWI4YWM0YiJ9.6oek-foXndCOyaX4mX4XscgxLgcgaj2TjieCoaKzi58
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwMzczLCJpYXQiOjE3NjM1NDAwNzMsImp0aSI6ImZkZWZmNjI5ZTIwNTRkZTA5M2UzYWI4YzM2YzJlYzEyIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.2wZSswX4vlfAk1D03R47hxHmMmoZpLGsNLfFBKKNrLU
+
+###
+GET {{baseUrl}}/profile/candidate/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTM4NzQyLCJpYXQiOjE3NjM1Mzg0NDIsImp0aSI6IjdiNDI4MzM1MzhjNjRhYzY5YzY0ZDNkYmY2NGNkYzZhIiwidXNlcl9pZCI6Ijg1YTg3M2RjLWFmNWMtNDk2MS1iOGE4LTBhYjNhYzk4ODFjNCJ9.ynE0AGXNcNa1pXroKQJlFNN6YG9kBgX9kfiALVSH5vY
+
+###
+PUT {{baseUrl}}/profile/candidate/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTM4NzQyLCJpYXQiOjE3NjM1Mzg0NDIsImp0aSI6IjdiNDI4MzM1MzhjNjRhYzY5YzY0ZDNkYmY2NGNkYzZhIiwidXNlcl9pZCI6Ijg1YTg3M2RjLWFmNWMtNDk2MS1iOGE4LTBhYjNhYzk4ODFjNCJ9.ynE0AGXNcNa1pXroKQJlFNN6YG9kBgX9kfiALVSH5vY
+content-type: application/json
+
+{
+        "skills": ["2adbe378-ffb3-48b6-86bb-7f8b32fc5e02"],
+        "bio": "Experienced software developer with a passion for creating innovative solutions."
+}
+
+###
+DELETE  {{baseUrl}}/profile/candidate/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNDg5MzgwLCJpYXQiOjE3NjM0ODkwODAsImp0aSI6IjU1NWVjNTYxOTBmYzQyMjc5MmExYWM5MDkyNGE0OTU5IiwidXNlcl9pZCI6ImExOWJmYWY1LTJkNzMtNDc2Ny05NjczLTc1YjdkNWI4YWM0YiJ9.mxZ2JhAY8P6wLwX-MoW52gQgbgELAyA8FfiRMqduhBA
+content-type: application/json
+
+###
+GET {{baseUrl}}/companies/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTMzNTA4LCJpYXQiOjE3NjM1MzMyMDgsImp0aSI6ImE5ZDM1YzEzNWZhYTRlOTE5ZmE3OTA5ZjNjMDAxM2YzIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.3GMcSQnia06kKK9VvmQ8Ln6KoC5q39YE0KoeT2Zx5n0
+
+###
+POST {{baseUrl}}/companies/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTMzNTA4LCJpYXQiOjE3NjM1MzMyMDgsImp0aSI6ImE5ZDM1YzEzNWZhYTRlOTE5ZmE3OTA5ZjNjMDAxM2YzIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.3GMcSQnia06kKK9VvmQ8Ln6KoC5q39YE0KoeT2Zx5n0
+content-type: application/json
+
+{
+    "name": "Tech Solutions Ltd",
+    "description": "A leading tech company specializing in software development.",
+    "location": "San Francisco, CA"
+}
+
+###
+GET {{baseUrl}}/companies/bcda38c6-eff0-4f44-b4b7-97e487149c03/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTMzNTA4LCJpYXQiOjE3NjM1MzMyMDgsImp0aSI6ImE5ZDM1YzEzNWZhYTRlOTE5ZmE3OTA5ZjNjMDAxM2YzIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.3GMcSQnia06kKK9VvmQ8Ln6KoC5q39YE0KoeT2Zx5n0
+
+###
+PUT {{baseUrl}}/companies/bcda38c6-eff0-4f44-b4b7-97e487149c03/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTMzODM0LCJpYXQiOjE3NjM1MzM1MzQsImp0aSI6ImE1OTQxMTFlODYwNDRiOTliMmMwNzA5YzAwMGFjMjliIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.aiI87E4n8fM5IeltZYpb0wprL15AEUobQIFQ9zgKH5w
+Content-Type: application/json
+
+{
+    "name": "Tech Solutions International",
+    "description": "An innovative tech company focusing on AI and ML solutions.",
+    "location": "New York, NY"
+}
+
+###
+DELETE {{baseUrl}}/companies/bcda38c6-eff0-4f44-b4b7-97e487149c03/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTMzODM0LCJpYXQiOjE3NjM1MzM1MzQsImp0aSI6ImE1OTQxMTFlODYwNDRiOTliMmMwNzA5YzAwMGFjMjliIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.aiI87E4n8fM5IeltZYpb0wprL15AEUobQIFQ9zgKH5w
+
+###
+GET {{baseUrl}}/skills/
+
+###
+POST {{baseUrl}}/skills/
+Content-Type: application/json
+
+{
+    "name": "Python"
+}
+###
+DELETE {{baseUrl}}/skills/d763ecbe-7872-4ebd-a704-1d9689261762/
+
+###
+GET {{baseUrl}}/jobs/
+
+###
+POST {{baseUrl}}/jobs/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwMzczLCJpYXQiOjE3NjM1NDAwNzMsImp0aSI6ImZkZWZmNjI5ZTIwNTRkZTA5M2UzYWI4YzM2YzJlYzEyIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.2wZSswX4vlfAk1D03R47hxHmMmoZpLGsNLfFBKKNrLU
+
+{
+    "title": "Backend Developer",
+    "description": "Responsible for server-side web application logic and integration.",
+    "location": "Remote",
+    "is_external": false,
+    "external_url": ""
+}
+
+###
+GET {{baseUrl}}/jobs/c91752f9-1331-4ad2-a29c-3182faa8f133/
+
+###
+PUT {{baseUrl}}/jobs/c91752f9-1331-4ad2-a29c-3182faa8f133/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwMzczLCJpYXQiOjE3NjM1NDAwNzMsImp0aSI6ImZkZWZmNjI5ZTIwNTRkZTA5M2UzYWI4YzM2YzJlYzEyIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.2wZSswX4vlfAk1D03R47hxHmMmoZpLGsNLfFBKKNrLU
+
+{
+    "title": "Senior Backend Developer",
+    "description": "Lead the backend team and oversee server-side logic and integration.",
+    "location": "Remote",
+    "is_external": false,
+    "external_url": ""
+}

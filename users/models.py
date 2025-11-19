@@ -79,8 +79,8 @@ class Company(models.Model):
     logo = models.ImageField(null=True, blank=True)
 
     #relationships
-    owner = models.OneToOneField(
-        User, null=True, on_delete=models.SET_NULL, related_name="companies"
+    owner = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.SET_NULL, related_name="companies"
         )
 
     def __str__(self):
