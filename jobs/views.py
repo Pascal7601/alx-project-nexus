@@ -3,6 +3,10 @@ from . import serializers
 from .models import JobPosting
 from users.permissions import IsRecruiter, IsCompanyOwner
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import JobFilter
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 class JobListCreateView(generics.ListCreateAPIView):
     """GET: List all job postings
@@ -10,6 +14,12 @@ class JobListCreateView(generics.ListCreateAPIView):
     """
     serializer_class = serializers.JobPostingReadSerializer
     queryset = JobPosting.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = JobFilter
+
+    @method_decorator(cache_page(60*15))  # Cache for 15 minutes
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
     def get_permissions(self):
         if self.request.method == 'POST':

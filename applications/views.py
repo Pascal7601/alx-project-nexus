@@ -61,7 +61,12 @@ class JobApplicantsListView(generics.ListAPIView):
         if job.company.owner != self.request.user:
              raise exceptions.PermissionDenied("You do not have permission to view these applicants.")
 
-        return Application.objects.filter(job=job)
+        return Application.objects.filter(job=job).select_related(
+            'job, candidate',
+        ).prefetch_related(
+            'job__required_skills',
+            'candidate__skills'
+        ).order_by('-applied_at')
 
 
 class ApplicationStatusUpdateView(generics.UpdateAPIView):

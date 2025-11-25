@@ -28,3 +28,6 @@ class JobPosting(models.Model):
         if self.company:
             return f"{self.title} at {self.company.name}"
         return f"{self.title} (no company)"
+    
+    class Meta:
+        ordering = ['-posted_at']
