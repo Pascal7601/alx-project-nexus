@@ -3,6 +3,7 @@ from .models import Application
 from jobs.serializers import JobPostingReadSerializer
 from users.serializers import CandidateProfileSerializer
 
+
 class ApplicationReadSerializer(serializers.ModelSerializer):
     """
     Serializer for READING applications.
@@ -22,7 +23,8 @@ class ApplicationReadSerializer(serializers.ModelSerializer):
             'job', 
             'candidate', 
             'status', 
-            'applied_at'
+            'applied_at',
+            'match_score'
         ]
     
     def get_match_score(self, obj):

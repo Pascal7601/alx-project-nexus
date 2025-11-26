@@ -1,6 +1,6 @@
 # base URL
 @baseUrl = http://127.0.0.1:8000/api
-@authToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwODQ4LCJpYXQiOjE3NjM1NDA1NDgsImp0aSI6ImVlMGY2NDczMDI2NTQ3YTRhZjI0NzU0MWMzNjJiOGQwIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.zRvS0QHC2OevF5Y4QMo4b8lgSkF8wH2nZ_7CKJYGQkA
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwODQ4LCJpYXQiOjE3NjM1NDA1NDgsImp0aSI6ImVlMGY2NDczMDI2NTQ3YTRhZjI0NzU0MWMzNjJiOGQwIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.zRvS0QHC2OevF5Y4QMo4b8lgSkF8wH2nZ_7CKJYGQkA
 
 ###
 POST {{baseUrl}}/users/register/
@@ -54,7 +54,7 @@ content-type: application/json
 
 ###
 GET {{baseUrl}}/companies/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTMzNTA4LCJpYXQiOjE3NjM1MzMyMDgsImp0aSI6ImE5ZDM1YzEzNWZhYTRlOTE5ZmE3OTA5ZjNjMDAxM2YzIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.3GMcSQnia06kKK9VvmQ8Ln6KoC5q39YE0KoeT2Zx5n0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQ0NTY3LCJpYXQiOjE3NjM1NDQyNjcsImp0aSI6ImM2YzZkYjM4OGViNzRjMzE4YWFmZDU3NGU3YmY3MGExIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.iHLpIq7acbx-MXSF0lTUjjSqVXWvpHBoB01efXzLDPc
 
 ###
 POST {{baseUrl}}/companies/
@@ -100,28 +100,29 @@ Content-Type: application/json
 DELETE {{baseUrl}}/skills/d763ecbe-7872-4ebd-a704-1d9689261762/
 
 ###
-GET {{baseUrl}}/jobs/
+GET {{baseUrl}}/jobs/?page_size=30
 
 ###
 POST {{baseUrl}}/jobs/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwMzczLCJpYXQiOjE3NjM1NDAwNzMsImp0aSI6ImZkZWZmNjI5ZTIwNTRkZTA5M2UzYWI4YzM2YzJlYzEyIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.2wZSswX4vlfAk1D03R47hxHmMmoZpLGsNLfFBKKNrLU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQ0NTY3LCJpYXQiOjE3NjM1NDQyNjcsImp0aSI6ImM2YzZkYjM4OGViNzRjMzE4YWFmZDU3NGU3YmY3MGExIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.iHLpIq7acbx-MXSF0lTUjjSqVXWvpHBoB01efXzLDPc
 
 {
-    "title": "Backend Developer",
+    "title": "Lead Backend Developer",
     "description": "Responsible for server-side web application logic and integration.",
     "location": "Remote",
     "is_external": false,
-    "external_url": ""
+    "external_url": "",
+    "company": "13dbea5b-2637-434e-9a5b-c52a2df47077"
 }
 
 ###
 GET {{baseUrl}}/jobs/c91752f9-1331-4ad2-a29c-3182faa8f133/
 
 ###
-PUT {{baseUrl}}/jobs/c91752f9-1331-4ad2-a29c-3182faa8f133/
+PUT {{baseUrl}}/jobs/e71ae931-94f1-4700-8dbe-76f50147d540/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwMzczLCJpYXQiOjE3NjM1NDAwNzMsImp0aSI6ImZkZWZmNjI5ZTIwNTRkZTA5M2UzYWI4YzM2YzJlYzEyIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.2wZSswX4vlfAk1D03R47hxHmMmoZpLGsNLfFBKKNrLU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQ0NTY3LCJpYXQiOjE3NjM1NDQyNjcsImp0aSI6ImM2YzZkYjM4OGViNzRjMzE4YWFmZDU3NGU3YmY3MGExIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.iHLpIq7acbx-MXSF0lTUjjSqVXWvpHBoB01efXzLDPc
 
 {
     "title": "Senior Backend Developer",
