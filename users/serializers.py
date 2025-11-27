@@ -20,6 +20,42 @@ class UserCreateSerializer(serializers.ModelSerializer):
         )
         return user
 
+class VerifyEmailSerializer(serializers.Serializer):
+    """Serializer for verifying email with a token."""
+    token = serializers.CharField()
+
+    def validate(self, attrs):
+        """
+        Validate the token and inject the user object into validated_data.
+        """
+        token = attrs.get('token')
+        from utils import verify_email_token
+        # Verify the token
+        user = verify_email_token(token)
+        
+        if not user:
+            raise serializers.ValidationError({"token": "Invalid or expired token."})
+        
+        attrs['user'] = user
+        
+        return attrs
+
+class UserLoginSerializer(serializers.Serializer):
+    """Serializer for user login."""
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
+
+    def validate(self, attrs):
+        email = attrs.get('email')
+        password = attrs.get('password')
+
+        user = User.objects.filter(email=email).first()
+        if user and user.check_password(password):
+            if not user.is_active:
+                raise serializers.ValidationError("User account is not active.")
+            return user
+        raise serializers.ValidationError("Invalid email or password.")
+
 class CandidateProfileSerializer(serializers.ModelSerializer):
     """serializer of the candidate profile"""
     class Meta:
