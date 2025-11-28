@@ -2,7 +2,17 @@ from rest_framework import serializers
 from .models import Application
 from jobs.serializers import JobPostingReadSerializer
 from users.serializers import CandidateProfileSerializer
-from drf_spectacular.utils import extend_schema_field, OpenApiTypes
+
+
+class CandidateApplicationSerializer(serializers.ModelSerializer):
+    """
+    Serializer for a candidate's application overview.
+    """
+    job = JobPostingReadSerializer(read_only=True)
+
+    class Meta:
+        model = Application
+        fields = ['id', 'job', 'status', 'applied_at']
 
 class ApplicationReadSerializer(serializers.ModelSerializer):
     """
@@ -27,7 +37,6 @@ class ApplicationReadSerializer(serializers.ModelSerializer):
             'match_score'
         ]
     
-    @extend_schema_field(OpenApiTypes.FLOAT)
     def get_match_score(self, obj):
         """
         Calculate and return the match score between the candidate's skills

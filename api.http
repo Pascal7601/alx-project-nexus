@@ -1,68 +1,80 @@
 # base URL
 @baseUrl = http://127.0.0.1:8000/api
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwODQ4LCJpYXQiOjE3NjM1NDA1NDgsImp0aSI6ImVlMGY2NDczMDI2NTQ3YTRhZjI0NzU0MWMzNjJiOGQwIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.zRvS0QHC2OevF5Y4QMo4b8lgSkF8wH2nZ_7CKJYGQkA
+@authTokenRecruiter = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0MzcxMTk4LCJpYXQiOjE3NjQzNjc1OTgsImp0aSI6ImFkOGIyN2M0OGFlOTQxOTY4NTMyMzFiZmQ5NGI3YzExIiwidXNlcl9pZCI6IjQxM2YzYzk0LWYxMWYtNDY3ZS1iOTBlLTcxMjcwZjY0M2I4NyJ9.VHMBNOrtkKpVfM6VaiE3lSVxXVLiTjzaGC2K6_CgBEc
+@authTokenCandidate = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0MzcxMjM0LCJpYXQiOjE3NjQzNjc2MzQsImp0aSI6ImViYjYzOTZjYWM4NzQxMWY5NDk2ZjI2MmRiY2Y1YzE0IiwidXNlcl9pZCI6ImRmN2VhYzZlLTVlZWYtNDY5NC1iZDA0LWQxMTY1YTIzOTJhYSJ9.5MQa-VtyDw4eLuVczQbLyNvqkdcfljbwMcPeOmgF0Wo
+###
+POST {{baseUrl}}/users/register/
+Content-Type: application/json
+
+{
+    "email": "recruiter4@gmail.com",
+    "password": "recruiter4",
+    "role": "recruiter"
+}
 
 ###
 POST {{baseUrl}}/users/register/
 Content-Type: application/json
 
 {
-    "email": "test04@gmail.com",
-    "password": "test04"
+    "email": "candidate2@gmail.com",
+    "password": "candidate2"
 }
-
 ###
-POST {{baseUrl}}/auth/token/
+POST {{baseUrl}}/auth/login/
 Content-Type: application/json
 
 {
-    "email": "test02@gmail.com",
-    "password": "test02"
+    "email": "recruiter4@gmail.com",
+    "password": "recruiter4"
 }
 
 ###
-POST {{baseUrl}}/auth/token/
+POST {{baseUrl}}/auth/login/
 Content-Type: application/json
 
 {
-    "email": "test02@gmail.com",
-    "password": "test02"
+    "email": "candidate2@gmail.com",
+    "password": "candidate2"
 }
 
 ###
 GET {{baseUrl}}/users/me/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQwMzczLCJpYXQiOjE3NjM1NDAwNzMsImp0aSI6ImZkZWZmNjI5ZTIwNTRkZTA5M2UzYWI4YzM2YzJlYzEyIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.2wZSswX4vlfAk1D03R47hxHmMmoZpLGsNLfFBKKNrLU
+Authorization: Bearer {{authTokenRecruiter}}
 
 ###
 GET {{baseUrl}}/profile/candidate/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTM4NzQyLCJpYXQiOjE3NjM1Mzg0NDIsImp0aSI6IjdiNDI4MzM1MzhjNjRhYzY5YzY0ZDNkYmY2NGNkYzZhIiwidXNlcl9pZCI6Ijg1YTg3M2RjLWFmNWMtNDk2MS1iOGE4LTBhYjNhYzk4ODFjNCJ9.ynE0AGXNcNa1pXroKQJlFNN6YG9kBgX9kfiALVSH5vY
+Authorization: Bearer {{authTokenCandidate}}
 
 ###
 PUT {{baseUrl}}/profile/candidate/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTM4NzQyLCJpYXQiOjE3NjM1Mzg0NDIsImp0aSI6IjdiNDI4MzM1MzhjNjRhYzY5YzY0ZDNkYmY2NGNkYzZhIiwidXNlcl9pZCI6Ijg1YTg3M2RjLWFmNWMtNDk2MS1iOGE4LTBhYjNhYzk4ODFjNCJ9.ynE0AGXNcNa1pXroKQJlFNN6YG9kBgX9kfiALVSH5vY
+Authorization: Bearer {{authTokenCandidate}}
 content-type: application/json
 
 {
-        "skills": ["2adbe378-ffb3-48b6-86bb-7f8b32fc5e02"],
+        "skills_ids": ["bf689c35-556f-414e-af6c-bd51891857a2", "07215bf4-aa18-426b-b8eb-6e8a0c3777fb"],
         "bio": "Experienced software developer with a passion for creating innovative solutions."
 }
 
 ###
 DELETE  {{baseUrl}}/profile/candidate/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNDg5MzgwLCJpYXQiOjE3NjM0ODkwODAsImp0aSI6IjU1NWVjNTYxOTBmYzQyMjc5MmExYWM5MDkyNGE0OTU5IiwidXNlcl9pZCI6ImExOWJmYWY1LTJkNzMtNDc2Ny05NjczLTc1YjdkNWI4YWM0YiJ9.mxZ2JhAY8P6wLwX-MoW52gQgbgELAyA8FfiRMqduhBA
+Authorization: Bearer {{authTokenCandidate}}
 content-type: application/json
 
 ###
 GET {{baseUrl}}/companies/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQ0NTY3LCJpYXQiOjE3NjM1NDQyNjcsImp0aSI6ImM2YzZkYjM4OGViNzRjMzE4YWFmZDU3NGU3YmY3MGExIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.iHLpIq7acbx-MXSF0lTUjjSqVXWvpHBoB01efXzLDPc
+
+###
+GET {{baseUrl}}/companies/my/
+Authorization: Bearer {{authTokenRecruiter}}
 
 ###
 POST {{baseUrl}}/companies/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTMzNTA4LCJpYXQiOjE3NjM1MzMyMDgsImp0aSI6ImE5ZDM1YzEzNWZhYTRlOTE5ZmE3OTA5ZjNjMDAxM2YzIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.3GMcSQnia06kKK9VvmQ8Ln6KoC5q39YE0KoeT2Zx5n0
+Authorization: Bearer {{authTokenRecruiter}}
 content-type: application/json
 
 {
-    "name": "Tech Solutions Ltd",
+    "name": "Majimaji Tech Corp",
     "description": "A leading tech company specializing in software development.",
     "location": "San Francisco, CA"
 }
@@ -94,40 +106,50 @@ POST {{baseUrl}}/skills/
 Content-Type: application/json
 
 {
-    "name": "Python"
+    "name": "C++"
 }
 ###
 DELETE {{baseUrl}}/skills/d763ecbe-7872-4ebd-a704-1d9689261762/
 
 ###
-GET {{baseUrl}}/jobs/?page_size=30
+GET {{baseUrl}}/jobs/?title=Engineer
 
 ###
 POST {{baseUrl}}/jobs/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQ0NTY3LCJpYXQiOjE3NjM1NDQyNjcsImp0aSI6ImM2YzZkYjM4OGViNzRjMzE4YWFmZDU3NGU3YmY3MGExIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.iHLpIq7acbx-MXSF0lTUjjSqVXWvpHBoB01efXzLDPc
+Authorization: Bearer {{authTokenRecruiter}}
 
 {
-    "title": "Lead Backend Developer",
+    "title": "Senior Backend Engineer",
     "description": "Responsible for server-side web application logic and integration.",
     "location": "Remote",
     "is_external": false,
     "external_url": "",
-    "company": "13dbea5b-2637-434e-9a5b-c52a2df47077"
+    "company": "829cd57f-9064-4223-b0ba-368f9c2388d6"
 }
 
 ###
 GET {{baseUrl}}/jobs/c91752f9-1331-4ad2-a29c-3182faa8f133/
 
 ###
-PUT {{baseUrl}}/jobs/e71ae931-94f1-4700-8dbe-76f50147d540/
+PUT {{baseUrl}}/jobs/33557d79-6914-412f-9b71-31e4df4fe665/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYzNTQ0NTY3LCJpYXQiOjE3NjM1NDQyNjcsImp0aSI6ImM2YzZkYjM4OGViNzRjMzE4YWFmZDU3NGU3YmY3MGExIiwidXNlcl9pZCI6ImE1ZGM0NmJjLTY1NWQtNGI0ZS05NDJjLWE0MThlYWZjNDdiOSJ9.iHLpIq7acbx-MXSF0lTUjjSqVXWvpHBoB01efXzLDPc
+Authorization: Bearer {{authTokenRecruiter}}
 
 {
-    "title": "Senior Backend Developer",
-    "description": "Lead the backend team and oversee server-side logic and integration.",
-    "location": "Remote",
-    "is_external": false,
-    "external_url": ""
+    "title": "Senior Backend Engineer",
+    "description": "Responsible for server-side web application logic and integration. Must have experience with microservices.",
+    "required_skills": ["bf689c35-556f-414e-af6c-bd51891857a2", "07215bf4-aa18-426b-b8eb-6e8a0c3777fb"]
 }
+
+###
+POST {{baseUrl}}/jobs/33557d79-6914-412f-9b71-31e4df4fe665/apply/
+Authorization: Bearer {{authTokenCandidate}}
+
+###
+GET {{baseUrl}}/jobs/33557d79-6914-412f-9b71-31e4df4fe665/applicants/
+Authorization: Bearer {{authTokenRecruiter}}
+
+###
+GET {{baseUrl}}/applications/my/
+Authorization: Bearer {{authTokenCandidate}}
