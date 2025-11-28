@@ -19,6 +19,8 @@ jobs:
           POSTGRES_USER: ci_user
           POSTGRES_PASSWORD: ci_password
           POSTGRES_DB: ci_test_db
+          DB_HOST: localhost
+          DB_PORT: 5432
         ports:
           - 5432:5432
         options: >-
@@ -45,6 +47,8 @@ jobs:
           POSTGRES_USER: ci_user
           POSTGRES_PASSWORD: ci_password
           POSTGRES_DB: ci_test_db
+          DB_HOST: localhost
+          DB_PORT: 5432
         run: |
           python manage.py migrate
 
