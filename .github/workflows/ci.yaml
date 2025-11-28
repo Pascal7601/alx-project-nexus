@@ -42,12 +42,12 @@ jobs:
 
       - name: Run migrations
         env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+          DATABASE_URL: postgres://ci_user:ci_password@localhost:5432/ci_test_db
         run: |
           python manage.py migrate
 
       - name: Run tests
         env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+          DATABASE_URL: postgres://ci_user:ci_password@localhost:5432/ci_test_db
         run: |
           python manage.py test
