@@ -68,7 +68,7 @@ The project follows a micro-service-like architecture within a monolith, orchest
 
 1. Clone the Repository
 
-git clone [https://github.com/](https://github.com/)[Pascal7601]/[alx-project-nexus].git
+git clone [https://github.com/Pascal7601/alx-project-nexus.git](https://github.com/Pascal7601/alx-project-nexus.git)
 cd alx-project-nexus
 
 2. Configure Environment
