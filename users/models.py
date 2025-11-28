@@ -38,6 +38,7 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=254, null=True, blank=True)
     last_name = models.CharField(max_length=254, null=True, blank=True)
     role = models.CharField(max_length=20, choices=Roles, default=Roles.CANDIDATE)
+    is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

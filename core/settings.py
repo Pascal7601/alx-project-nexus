@@ -142,7 +142,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # Celery Configuration Options
@@ -157,6 +158,10 @@ from celery.schedules import crontab
 CELERY_BEAT_SCHEDULE = {
     'scraper': {
         'task': 'jobs.tasks.run_myjobmag_scraper',
-        'schedule': crontab(minute='*'),  # every day at midnight
+        'schedule': crontab(hour=0, minute=0),  # every day at midnight
     }
 }
+
+## Email configuration
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+

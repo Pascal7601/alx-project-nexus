@@ -3,6 +3,7 @@ from . import serializers
 from .models import Application
 from jobs.models import JobPosting
 from users.permissions import IsRecruiter
+from django.db import IntegrityError
 
 class ApplyJobView(generics.CreateAPIView):
     """
@@ -29,7 +30,10 @@ class ApplyJobView(generics.CreateAPIView):
             raise exceptions.PermissionDenied("Only candidates can apply.")
         
         # Save the application
-        serializer.save(candidate=user.candidateprofile, job=job)
+        try:
+            serializer.save(candidate=user.candidate_profile, job=job)
+        except IntegrityError:
+            raise exceptions.ValidationError("You have already applied for this job.")
 
 
 class CandidateApplicationListView(generics.ListAPIView):
