@@ -42,6 +42,7 @@ class VerifyEmailView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         user.is_active = True
+        user.save()
         return Response({"message": "Email verified successfully."}, status=status.HTTP_200_OK)
 
 class UserLoginView(generics.GenericAPIView):
@@ -85,7 +86,7 @@ class CandidateDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CandidateProfile.objects.all()
 
     def get_object(self):
-        return self.request.user.profile
+        return self.request.user.candidate_profile
 
 class CompanyListCreateView(generics.ListCreateAPIView):
     """
@@ -140,3 +141,15 @@ class CompanyRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.method in ['PUT', 'PATCH']:
             return serializers.CompanyWriteSerializer
         return self.serializer_class
+
+class MyCompanyView(generics.ListAPIView):
+    """
+    GET /api/companies/my/
+    Allows a recruiter to view their own company details.
+    """
+    serializer_class = serializers.CompanyReadSerializer
+    permission_classes = [IsAuthenticated, IsRecruiter]
+
+    def get_queryset(self):
+        # Retrieve the company owned by the current user
+        return self.request.user.companies.all()

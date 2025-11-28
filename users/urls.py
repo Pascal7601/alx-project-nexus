@@ -8,5 +8,6 @@ urlpatterns = [
     path("users/me/", views.UserDetailView.as_view()),
     path("profile/candidate/", views.CandidateDetailView.as_view()),
     path("companies/", views.CompanyListCreateView.as_view()),
+    path("companies/my/", views.MyCompanyView.as_view()),
     path("companies/<str:pk>/", views.CompanyRetrieveUpdateDestroyView.as_view()),
 ]

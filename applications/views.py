@@ -41,12 +41,16 @@ class CandidateApplicationListView(generics.ListAPIView):
     GET /api/applications/my/
     Shows a candidate all the jobs they have applied to.
     """
-    serializer_class = serializers.ApplicationReadSerializer
+    serializer_class = serializers.CandidateApplicationSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
+        user = self.request.user
+        if user.role != 'candidate':
+            raise exceptions.PermissionDenied("Only candidates can view their applications.")
+        
         # Filter applications where the candidate is the current user
-        return Application.objects.filter(candidate=self.request.user.candidateprofile)
+        return Application.objects.filter(candidate=self.request.user.candidate_profile).order_by('-applied_at')
 
 
 class JobApplicantsListView(generics.ListAPIView):
@@ -66,7 +70,7 @@ class JobApplicantsListView(generics.ListAPIView):
              raise exceptions.PermissionDenied("You do not have permission to view these applicants.")
 
         return Application.objects.filter(job=job).select_related(
-            'job, candidate',
+            'job', 'candidate',
         ).prefetch_related(
             'job__required_skills',
             'candidate__skills'

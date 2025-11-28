@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'core.middleware.RateLimitMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -164,4 +165,8 @@ CELERY_BEAT_SCHEDULE = {
 
 ## Email configuration
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # in minutes
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # in days
+}

@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import CandidateProfile, Company
-
-User = get_user_model()
+from skills.serializers import SkillSerializer
+from skills.models import Skill
+from utils import User
 
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -58,9 +59,18 @@ class UserLoginSerializer(serializers.Serializer):
 
 class CandidateProfileSerializer(serializers.ModelSerializer):
     """serializer of the candidate profile"""
+    skills = SkillSerializer(many=True, read_only=True)
+    skills_ids = serializers.PrimaryKeyRelatedField(
+        many=True,
+        write_only=True,
+        source='skills',
+        queryset=Skill.objects.all()
+    )
     class Meta:
         model = CandidateProfile
-        fields = ["headline", "bio", "location", "skills"]
+        fields = ["headline", "bio", "location", "skills", "user", "skills_ids"]
+
+        read_only_fields = ['user']
 
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
