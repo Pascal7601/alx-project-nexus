@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mzjosq514bl3%^l@5#j!t^#qnj0(!p$2et&*fd5d+%2zwk)9px
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["http://localhost:5173", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'users',
     'jobs',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'core.middleware.RateLimitMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -159,7 +161,7 @@ from celery.schedules import crontab
 CELERY_BEAT_SCHEDULE = {
     'scraper': {
         'task': 'jobs.tasks.run_myjobmag_scraper',
-        'schedule': crontab(hour=0, minute=0),  # every day at midnight
+        'schedule': crontab(minute=10),  # every two minutes
     }
 }
 
@@ -170,3 +172,8 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # in minutes
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # in days
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]

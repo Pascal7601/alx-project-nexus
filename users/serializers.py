@@ -8,12 +8,14 @@ from utils import User
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["email", "password", "username", "role"]
+        fields = ["email", "password", "username", "role", "first_name", "last_name"]
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         """serialize data from the Post request and save the new user in the db"""
         user = User.objects.create_user(
+            first_name=validated_data.get("first_name", ""),
+            last_name=validated_data.get("last_name", ""),
             email=validated_data["email"],
             password=validated_data["password"],
             username=validated_data.get("username"),

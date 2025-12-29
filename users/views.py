@@ -20,6 +20,7 @@ class UserCreateView(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         """serialize the data, save the user  and manually return a custom response"""
+        print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
@@ -64,6 +65,9 @@ class UserLoginView(generics.GenericAPIView):
             "user_details": {
                 "id": user.id,
                 "email": user.email,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "username": user.username,
                 "role": user.role,
             }
         }
