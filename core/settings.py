@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mzjosq514bl3%^l@5#j!t^#qnj0(!p$2et&*fd5d+%2zwk)9px
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["http://localhost:5173", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["http://localhost:5173", "localhost", "127.0.0.1", "werah.me", "www.werah.me", "https://werah.me", "https://www.werah.me"]
 
 
 # Application definition
@@ -181,3 +181,15 @@ CORS_ALLOWED_ORIGINS = [
     "https://werah.me",
     "https://www.werah.me",
 ]
+
+# EMAIL CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
+EMAIL_PORT = config('EMAIL_PORT', default=465, cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=True, cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'Werah Support <noreply@werah.me>'
+
+RESEND_API_KEY = config('RESEND_API_KEY')

@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+import resend
+
 
 User = get_user_model()
 
@@ -28,3 +30,18 @@ def verify_email_token(token, expiration=3600):
         return User.objects.get(id=user_id)
     except (BadSignature, SignatureExpired, User.DoesNotExist):
         return None   
+
+
+def send_email(to_email, subject, body):
+    """Sends an email using Resend service."""
+    resend.api_key = settings.RESEND_API_KEY
+
+    params = {
+        "from": settings.DEFAULT_FROM_EMAIL,
+        "to": to_email,
+        "subject": subject,
+        "html": body,
+    }
+
+    email = resend.Emails.send(params)
+    return email
